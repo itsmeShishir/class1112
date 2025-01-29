@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailind Css Project</title>
+    <!-- icons -> font awesome icons and tailwind css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 font-[cursive]">
+    <!-- heading -->
+    <nav class="w-full md:fixed md:bg-white md:z-10">
+      <div
+        class="container md:w-[75vw] flex justify-between items-center mx-auto h-[9vh]"
+      >
+        <h1 class="text-3xl font-bold">
+          <span class="text-green-500 text-4xl">L</span>aundries<span class=""
+            ><i class="fas fa-hands-wash text-green-500"></i
+          ></span>
+        </h1>
+        <div class="flex md:gap-10 items-center">
+          <div class="hidden md:flex gap-5 font-medium items-center">
+            <a href="#" class="text-green-500">Home</a>
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >About</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Services</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Blog</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Pages</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Contact</a
+            >
+            <form class="">
+              <input
+                type="text"
+                placeholder="Enter keyword ..."
+                class="font-normal py-1 px-5 border-2 border-black rounded-l-full"
+              />
+              <button
+                class="py-1 border-2 border-green-500 px-5 bg-green-500 rounded-r-full hover:text-white hover:bg-black hover:border-black transition ease-in-out duration-[2s]"
+                type="submit"
+              >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+          </div>
+          <i class="fa-regular fa-moon text-2xl"></i>
+        </div>
+      </div>
+    </nav>
+    <!-- hero section -->
+    <section class="relative top-0 left-0">
+      <video autoplay class="absolute top-0 left-0 w-full h-[91vh] z-[-1]">
+        <source src="./video.mp4" />
+      </video>
+      <div
+        class="absolute top-0 left-0 flex justify-center items-center w-full h-[91vh] bg-black bg-opacity-50"
+      >
+        <div class="text-xl text-white flex flex-col gap-5 w-[40vw]">
+          <h1 class="text-6xl font-semibold">
+            Laundry & Dry Cleaning Services
+          </h1>
+          <p>
+            Irferendis repudandae fugia rchitecto beatae rederit svitae recusa
+            ndae debitifacere uiimi placeat maxienui
+          </p>
+          <a
+            href="#"
+            class="py-3 px-5 bg-green-500 text-white rounded-lg w-[10vw] text-center"
+            >Read More</a
+          >
+        </div>
+        <div class="w-[40vw]"></div>
+      </div>
+      <div></div>
+    </section>
+    <!-- features -->
+    <section class="h-[100vh]"></section>
+
+    <section
+      class="container md:w-[75vw] md:h-[25vh] mx-auto grid md:grid-cols-3 gap-10 items-center"
+    >
+      <div
+        class="border-2 h-[25vh] flex flex-col justify-center gap-3 border-transparent p-10 hover:shadow-lg hover:bg-white transition ease-in-out duration-400"
+      >
+        <i class="fas fa-stopwatch-20 text-4xl font-bold text-green-600"></i>
+        <h1 class="text-gray-500 text-2xl font-bold hover:text-green-600">
+          Save Time and Money
+        </h1>
+        <p class="text-gray-500 jusify">
+          Amus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo
+          non. Duis sed et dolor amet.
+        </p>
+      </div>
+      <div
+        class="border-2 h-[25vh] flex flex-col justify-center gap-3 border-transparent p-10 hover:shadow-lg hover:bg-white transition ease-in-out duration-400"
+      >
+        <i class="fas fa-comments-dollar text-4xl font-bold text-green-600"></i>
+        <h1 class="text-gray-500 text-2xl font-bold hover:text-green-600">
+          Pay Online in Seconds
+        </h1>
+        <p class="text-gray-500 jusify">
+          Amus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo
+          non. Duis sed et dolor amet.
+        </p>
+      </div>
+      <div
+        class="border-2 h-[25vh] flex flex-col justify-center gap-3 border-transparent p-10 hover:shadow-lg hover:bg-white transition ease-in-out duration-400"
+      >
+        <i class="fas fa-thumbs-up text-4xl font-bold text-green-600"></i>
+        <h1 class="text-gray-500 text-2xl font-bold hover:text-green-600">
+          Satisfaction Guarantee
+        </h1>
+        <p class="text-gray-500 jusify">
+          Amus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo
+          non. Duis sed et dolor amet.
+        </p>
+      </div>
+    </section>
+    <section class="container mx-auto md:w-[75vw]">
+      <div
+        class="flex flex-col lg:flex-row items-center gap-8 px-6 lg:px-20 py-12"
+      >
+        <div class="relative lg:w-1/2 flex-shrink-0">
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/themes/laundries/assets/images/about1.jpg"
+            alt="Person Doing Laundry"
+            class="w-[350px] h-auto rounded-lg absolute z-0 top-[50px] left-[50px] shadow-lg border-4 border-white"
+          />
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/themes/laundries/assets/images/about2.jpg"
+            alt="Laundry Machine"
+            class="rounded-lg shadow-lg w-[350px] h-auto z-10"
+          />
+        </div>
+
+        <div class="flex flex-col gap-5 items-start">
+          <h3
+            class="text-green-600 relative text-lg font-light before:content-[''] before:bg-green-500 before:w-[32px] before:h-[3px] before:inline-block before:absolute before:-bottom-1"
+          >
+            More than 25 Years of Experience
+          </h3>
+          <h2
+            class="md:text-5xl text-2xl font-semibold md:w-[40vw] text-gray-800"
+          >
+            We are passionate about Laundry
+          </h2>
+          <p class="text-gray-600 md:w-[40vw]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam amet
+            maiores a officiis, magnam beatae velit nam ipsa quod et?
+          </p>
+
+          <ul class="felx flex-col gap-3">
+            <li class="flex items-center text-gray-600">
+              <span class="text-green-600 mr-2">
+                <i class="fa-solid fa-check"></i
+              ></span>
+              100% Customer Satisfaction
+            </li>
+            <li class="flex items-center text-gray-600">
+              <span class="text-green-600 mr-2">
+                <i class="fa-solid fa-check"></i
+              ></span>
+              100% Free Colection and Deliveries
+            </li>
+            <li class="flex items-center text-gray-600">
+              <span class="text-green-600 mr-2">
+                <i class="fa-solid fa-check"></i
+              ></span>
+              100% Affordable Price
+            </li>
+          </ul>
+
+          <a
+            href="#"
+            class="inline-block px-6 py-3 bg-green-700 text-white font-semibold rounded-full shadow hover:bg-green-700 transition"
+          >
+            Discover More
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- what we offer -->
+    <section
+      class="container md:h-[70vh] md:w-[75vw] mx-auto text-center flex flex-col items-center justify-center gap-5"
+    >
+      <div class="flex flex-col my-5 gap-3">
+        <h1
+          class="text-xl relative text-green-500 before:content-[''] before:bg-green-500 before:w-[32px] before:h-[3px] before:inline-block before:absolute before:-bottom-1"
+        >
+          What We Offer
+        </h1>
+        <h1 class="text-3xl font-bold">Our Services</h1>
+      </div>
+      <div class="grid md:grid-cols-3 gap-10 items-center">
+        <div
+          class="flex md:w-[20vw] border-2 pb-5 rounded-lg flex-col gap-5 text-center"
+        >
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/themes/laundries/assets/images/service1.jpg"
+            alt=""
+            class="w-full"
+          />
+          <h1 class="text-2xl font-bold hover:text-green-500">
+            Laundry Services
+          </h1>
+          <p class="text-gray-500">
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            labore et dolore magna.
+          </p>
+          <a
+            class="text-white py-2 px-5 bg-green-500 rounded-full md:w-[10vw] flex justify-center items-center"
+            href="#"
+            >Read More</a
+          >
+        </div>
+        <div
+          class="flex md:w-[20vw] border-2 pb-5 rounded-lg flex-col gap-5 text-center"
+        >
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/themes/laundries/assets/images/service1.jpg"
+            alt=""
+            class="w-full"
+          />
+          <h1 class="text-2xl font-bold hover:text-green-500">
+            Laundry Services
+          </h1>
+          <p class="text-gray-500">
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            labore et dolore magna.
+          </p>
+          <a
+            class="text-white py-2 px-5 bg-green-500 rounded-full md:w-[10vw] flex justify-center items-center"
+            href="#"
+            >Read More</a
+          >
+        </div>
+        <div
+          class="flex md:w-[20vw] border-2 pb-5 rounded-lg flex-col gap-5 text-center"
+        >
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/themes/laundries/assets/images/service1.jpg"
+            alt=""
+            class="w-full"
+          />
+          <h1 class="text-2xl font-bold hover:text-green-500">
+            Laundry Services
+          </h1>
+          <p class="text-gray-500">
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            labore et dolore magna.
+          </p>
+          <a
+            class="text-white py-2 px-5 bg-green-500 rounded-full md:w-[10vw] flex justify-center items-center"
+            href="#"
+            >Read More</a
+          >
+        </div>
+      </div>
+    </section>
+    <section
+      class="flex md:h-[80vh] my-5 flex-col md:flex-row items-center md:gap-20"
+    >
+      <img
+        src="https://wp.w3layouts.com/laundries/wp-content/themes/laundries/assets/images/about3.jpg"
+        alt=""
+        class="w-full md:w-[50vw] rounded-r-xl"
+      />
+      <div class="flex flex-col gap-7 w-full md:w-[40vw]">
+        <h1
+          class="text-xl relative text-green-500 before:content-[''] before:bg-green-500 before:w-[32px] before:h-[3px] before:inline-block before:absolute before:-bottom-1"
+        >
+          Get 30% Discount
+        </h1>
+        <h1 class="text-4xl hover:text-green-500 font-bold">
+          Book Our Laundry Services
+        </h1>
+        <p class="text-gray-500">
+          Lorem ipsum viverra feugiat. Pellen tesque libero ut justo, ultrices
+          inligula. Semper at tempufddfel. Lorem ipsum dolor sit amet
+          consectetures adipisicing elit.
+        </p>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-5 w-full"
+        >
+          <div>
+            <i class="fas fa-tshirt text-4xl font-bold text-green-600"></i>
+            <h1 class="text-gray-500 text-2xl font-extrabold">Clean Result</h1>
+            <p class="text-gray-500">
+              Sed ut perspiciatis unde omnis iste natus error sit.
+            </p>
+          </div>
+          <div>
+            <i
+              class="fas fa-shipping-fast text-4xl font-bold text-green-600"
+            ></i>
+            <h1 class="text-gray-500 text-2xl font-extrabold">Fast Deliery</h1>
+            <p class="text-gray-500">
+              Sed ut perspiciatis unde omnis iste natus error sit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="w-[75vw] md:h-[80vh] container mx-auto flex flex-col gap-5 items-center justify-center"
+    >
+      <h1
+        class="text-xl relative text-green-500 before:content-[''] before:bg-green-500 before:w-[32px] before:h-[3px] before:inline-block before:absolute before:-bottom-1"
+      >
+        News & Articles
+      </h1>
+      <h1 class="text-4xl font-bold hover:text-green-500">Latest Blog Posts</h1>
+      <div class="flex flex-col md:flex-row gap-10">
+        <div class="flex flex-col gap-5 rounded-xl shadow-lg">
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/uploads/sites/67/2022/03/blog6.jpg"
+            alt=""
+            class="w-full md:w-[22vw] rounded-t-lg"
+          />
+          <div class="pl-2 flex gap-2 items-center">
+            <i class="fas fa-user-circle text-green-500"></i>
+            <h1>
+              By
+              <span class="hover:text-green-500">Shishir Bhandari</span>
+            </h1>
+            /
+            <i class="fas fa-calendar-alt text-green-500"></i>
+            <h1 class="hover:text-green-500">jan 20, 2025</h1>
+          </div>
+          <h1 class="pl-2 text-2xl font-bold hover:text-green-500">
+            Hello world!
+          </h1>
+          <a
+            href="#"
+            class="pl-2 mb-10 text-green-500 hover:text-black text-lg flex items-center"
+            >Read More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="flex flex-col gap-5 rounded-xl shadow-lg">
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/uploads/sites/67/2022/03/blog6.jpg"
+            alt=""
+            class="w-full md:w-[22vw] rounded-t-lg"
+          />
+          <div class="pl-2 flex gap-2 items-center">
+            <i class="fas fa-user-circle text-green-500"></i>
+            <h1>
+              By
+              <span class="hover:text-green-500">Shishir Bhandari</span>
+            </h1>
+            /
+            <i class="fas fa-calendar-alt text-green-500"></i>
+            <h1 class="hover:text-green-500">jan 20, 2025</h1>
+          </div>
+          <h1 class="pl-2 text-2xl font-bold hover:text-green-500">
+            Hello world!
+          </h1>
+          <a
+            href="#"
+            class="pl-2 mb-10 text-green-500 hover:text-black text-lg flex items-center"
+            >Read More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="flex flex-col gap-5 rounded-xl shadow-lg">
+          <img
+            src="https://wp.w3layouts.com/laundries/wp-content/uploads/sites/67/2022/03/blog6.jpg"
+            alt=""
+            class="w-full md:w-[22vw] rounded-t-lg"
+          />
+          <div class="pl-2 flex gap-2 items-center">
+            <i class="fas fa-user-circle text-green-500"></i>
+            <h1>
+              By
+              <span class="hover:text-green-500">Shishir Bhandari</span>
+            </h1>
+            /
+            <i class="fas fa-calendar-alt text-green-500"></i>
+            <h1 class="hover:text-green-500">jan 20, 2025</h1>
+          </div>
+          <h1 class="pl-2 text-2xl font-bold hover:text-green-500">
+            Hello world!
+          </h1>
+          <a
+            href="#"
+            class="pl-2 mb-10 text-green-500 hover:text-black text-lg flex items-center"
+            >Read More <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+    <section class="bg-green-500 md:h-[20vh] flex items-center">
+      <div
+        class="md:w-[75vw] py-10 md:py-0 mx-auto container flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-0"
+      >
+        <h1
+          class="text-2xl md:text-4xl md:w-[40vw] font-bold text-white hover:text-black"
+        >
+          Quality Service with Free Collection & Delivery
+        </h1>
+        <p class="text-white text-xl">
+          <i class="fas fa-phone-volume text-4xl font-bold"></i> +1(23) 456 789
+          0000
+        </p>
+        <a
+          href="#"
+          class="block md:inline w-[200px] text-center text-black hover:text-black text-xl hover:bg-black hover:text-white px-6 py-2 rounded-full border-2 bg-white transition ease-in-out duration-400"
+          >Order Now</a
+        >
+      </div>
+    </section>
+    <section
+      class="bg-black py-10 md:py-0 md:h-[50vh] text-white flex flex-col items-center justify-center"
+    >
+      <footer class="container md:w-[75vw] mx-auto flex flex-col md:gap-10">
+        <div class="flex flex-col md:flex-row justify-between w-full gap-5">
+          <h1 class="underline text-4xl font-bold text-green-500">
+            Contact Us
+          </h1>
+          <div class="flex gap-5 items-center">
+            <i class="fa-brands fa-facebook text-3xl"></i>
+            <i class="fa-brands fa-instagram text-3xl"></i>
+            <i class="fa-brands fa-twitter text-3xl"></i>
+            <i class="fa-brands fa-linkedin text-3xl"></i>
+          </div>
+        </div>
+        <div class="flex flex-col mt-10 md:flex-row gap-5 md:gap-10">
+          <div class="flex flex-col gap-5 md:gap-10 text-xl md:w-[20vw]">
+            <p>10001 Alleghany st, 5th Avenue, 235 Terry, London.</p>
+            <p class="text-sm">
+              Everyday: <span class="font-bold">7 AM - 8 PM</span>
+            </p>
+          </div>
+          <div class="flex flex-col gap-5 md:gap-10 text-xl md:w-[20vw]">
+            <div>
+              <p>Phone</p>
+              <p class="hover:text-green-500 text-3xl font-bold">
+                +1(21) 112 7368
+              </p>
+            </div>
+            <div>
+              <p>E-mail</p>
+              <p class="hover:text-green-500 text-sm hover:underline">
+                laundries@mail.com
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5 md:gap-10 text-xl md:w-[20vw]">
+            <p>Support Links</p>
+          </div>
+          <div class="flex flex-col gap-5 md:gap-10 text-xl md:w-[20vw]">
+            <div>
+              <p>Subscribe Here</p>
+              <form action="#" class="flex">
+                <input
+                  type="text"
+                  placeholder="Email Address"
+                  class="py-2 px-5 rounded-l-full"
+                />
+                <button>
+                  <i
+                    class="fa fa-paper-plane text-2xl bg-green-500 py-2 px-5 rounded-r-full"
+                  ></i>
+                </button>
+              </form>
+            </div>
+            <p class="text-sm text-gray-500">
+              Subscribe to our mailing list and get updates to your email inbox.
+            </p>
+          </div>
+        </div>
+        <p class="text-center mt-10 text-gray-500 text-sm">
+          Copyright © 2025 Laundries. All Rights Reserved
+        </p>
+      </footer>
+    </section>
+  </body>
+</html>

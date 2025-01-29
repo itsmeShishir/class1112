@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/* 
+-> position -> static, relative, absolute, fixed, sticky 
+-> z-index
+-> display -> block, inline, inline-block, none, visibility:hidden
+-> flex -> flex-direction, flex-wrap, justify-content, align-items, align-content
+-> about grid  -> grid-template-rows, grid-template-columns, grid-template-areas, grid-row-gap, grid-column-gap, gap, justify-content, align-items 
+
+*/
+.hello {
+  height: 100vh;
+}
+.parent {
+  position: relative;
+}
+.children {
+  position: absolute;
+  /* top, left, right, bottom */
+  /* top: 20px; */
+  left: 50px;
+  bottom: 20px;
+  z-index: -1;
+}
+.one {
+  display: inline;
+}
+.two {
+  /* display: inline; */
+  /* display: block; */
+  /* display: inline-block; */
+  /* display: none; */
+  visibility: hidden;
+  background-color: aquamarine;
+  width: 50vw;
+  height: 5vh;
+}
+.part1 {
+  width: 250px;
+}
+.children3 {
+  width: 250px;
+  height: 350px;
+}
+.title {
+  font-size: 24px;
+  font-weight: 400;
+  word-break: break-all;
+  text-align: justify;
+}
+.descri {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: justify;
+  word-break: break-all;
+}
+.link {
+  text-decoration: none;
+}
+/* .container {
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  /* flex-direction: row; 
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* space-between -> center ma matra spacing 
+  /* space-evenly -> all cornors ma same spacing 
+  /* space-around -> center, left, right  ma matra 
+    spacing left ra right ma thorai matra dinxa
+   
+  align-items: center;
+} */
+.container {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 40px;
+  gap: 40px;
+}
+

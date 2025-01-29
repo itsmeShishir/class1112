@@ -1,0 +1,63 @@
+h1 {
+  /* padding: 10px; */
+  /* padding: 10px 20px; */
+  /* padding: 20px 8px 10px 40px; */
+  padding-top: 40px;
+  padding-right: 4px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  background-color: aqua;
+  /* border */
+  border-width: 2px;
+
+  border-style: solid;
+  border-color: red;
+  border-radius: 20px;
+  /* border: 4px solid blue; */
+  border-top: 4px solid blue;
+  /* margin */
+  /* margin: 10px; */
+  /* margin: 10px 20px; */
+  /* margin: 20px 8px 10px 40px; */
+  margin-top: 40px;
+  margin-right: 4px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+/* shadow -> box shadow and text shadow -> offset x, offset y, blur radius , color */
+.shadows {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  box-shadow: 20px 20px 5px red;
+}
+.ok {
+  color: aqua;
+  text-shadow: 10px 10px 5px red;
+}
+.container {
+  width: 90vw;
+  height: 90vh;
+  background-color: burlywood;
+  margin: 0 auto;
+}
+/* div h4 {
+  background-color: red;
+} */
+/* float in css -> left , right , none */
+
+.img {
+  float: left;
+  float: right;
+  float: none;
+}
+/* overflow -> visibel , hidden , scrol , auto */
+.overflow {
+  width: 100px;
+  height: 100px;
+  background-color: violet;
+  overflow: visible;
+  overflow: hidden;
+  overflow: Scroll;
+  overflow: auto;
+}

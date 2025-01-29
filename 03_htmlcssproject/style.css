@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+/* varibale how to create one css */
+:root {
+  --abc: #000;
+}
+/* container */
+.container {
+  width: 75vw;
+  margin: 0 auto;
+}
+/* flex */
+.flexsb {
+  display: flex;
+  justify-content: space-between;
+}
+.flexsa {
+  display: flex;
+  justify-content: space-around;
+}
+.flexse {
+  display: flex;
+  justify-content: space-evenly;
+}
+a {
+  text-decoration: none;
+  color: var(--abc);
+}
+/* nav */
+/* .nav {
+  align-items: center;
+  height: 7vh;
+}
+.logo {
+  font-size: 32px;
+}
+.logo span i {
+  font-style: italic;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  font-size: 17px;
+  color: #2c3038;
+  cursor: pointer;
+}
+.contact {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background-color: #fa2680;
+  padding: 13px 35px;
+  border-radius: 5px;
+}
+.menu li a i {
+  font-size: 18px;
+}
+.section1 {
+  height: calc(100vh - 7vh);
+  background: url("https://p.w3layouts.com/demos_new/template_demo/06-09-2020/tutee-liberty-demo_Free/448738053/web/assets/images/1.jpg")
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+.bgcolor {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.section1details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+}
+.section1title {
+  color: #fff;
+  font-size: 60px;
+  text-transform: capitalize;
+  font-weight: 600;
+  width: 33vw;
+  font-family: "Roboto", sans-serif;
+}
+.section1details p {
+  color: #fff;
+  font-size: 17px;
+  width: 35vw;
+  font-family: "Roboto", sans-serif;
+}
+.section1details div {
+  display: flex;
+  gap: 20px;
+}
+.section1details input {
+  padding: 15px 10px;
+  width: 20vw;
+  border: none;
+  border-radius: 5px;
+}
+.section2 {
+  height: 80vh;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.section2 h1 {
+  font-size: 36px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.section2 h1:hover {
+  color: #709bf1;
+}
+.section2 p {
+  font-size: 17px;
+  width: 40vw;
+  text-align: center;
+  color: #777777;
+}
+.section2card:nth-child(odd) {
+  background-color: #fff;
+}
+.section2card:nth-child(even):hover {
+  background-color: #fff;
+}
+.section2cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+.section2card {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  width: 20vw;
+  padding: 40px 30px;
+  text-align: center;
+}
+.section2card i {
+  font-size: 40px;
+  color: #fa2680;
+}
+.section2card h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.section2card p {
+  font-size: 15px;
+  width: 15vw;
+  color: #777777;
+} */
+/* section 3 */
+.section3 {
+  background: #f7f7f7;
+}
+.section3details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 0;
+  text-align: center;
+}
+.section3details h1 {
+  font-size: 36px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.section3details h1:hover {
+  color: #477be4;
+}
+.section3details p {
+  font-size: 17px;
+  color: #777777;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.section3cards {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.section3card {
+  width: 15vw;
+}
+
+.img1 {
+  width: 22vw;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.section3carddetails {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.flexone {
+  display: flex;
+  gap: 10px;
+}
+.py {
+  padding: 10px 0px;
+}
+.section3card p {
+  text-align: center;
+  width: 15vw;
+}
+/* media query */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95vw;
+  }
+  .section3details {
+    flex-direction: column;
+  }
+  .section3details p {
+    width: 90vw;
+  }
+  .section3cards {
+    flex-direction: column;
+  }
+  .img1 {
+    width: 90vw;
+  }
+  .section3card {
+    width: 90vw;
+  }
+  .pa {
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .section3card h1 {
+    text-align: start;
+    font-size: 24px;
+  }
+  .section3card p {
+    font-size: 14px;
+    text-align: justify;
+    word-break: break-all;
+  }
+}

@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
+
+@font-face {
+  font-family: "shishir";
+  src: url("./assets/Poppins-Regular.ttf");
+}
+
+/* selector in css 
+element selector, -> h1, p, article, div or other tags
+id selector, -> id ="one" , #one{}
+class selector, -> class='two', .two{}
+group selector, -> h4, h5, h6{}
+universal selector, *{}
+*/
+
+/* universal selector */
+* {
+  margin: 0px;
+  font-size: 35px;
+}
+/* id selector */
+#idselector {
+  font-size: 25px;
+  color: red;
+}
+/* class selector */
+.classselector {
+  background-color: aqua;
+}
+/* element selector */
+h3 {
+  background-color: brown;
+}
+/* group selsctor */
+h1,
+h2,
+h4,
+h5,
+h6 {
+  background-color: black;
+  color: wheat;
+  font-size: 50px;
+}
+
+h4 {
+  font-size: 20px;
+}
+/*
+this is a comment 
+*/
+/* ignore by compiler */
+
+/* ranking or priority*/
+/* inline css, 
+internal css,  
+id selector, 
+class selector, 
+element selscotr, / group selector, 
+universal selector
+*/
+
+/* color -> background-color and color */
+/* type -> rgb, rgba, named color, hexa, hsl */
+p {
+  background-color: yellow;
+  background-color: rgb(0, 255, 0); /* 0-255 */
+  background-color: rgba(0, 0, 255, 0.991); /* 0-255 */
+  background-color: #ffebeb;
+  background-color: hsl(359, 100%, 68%);
+}
+.desc {
+  font-size: 50px;
+  font-weight: 400;
+  font-family: "Rubik Vinyl", cursive;
+  font-style: italic;
+  text-decoration: line-through;
+  line-height: 50px;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.extrafonts {
+  font-family: "shishir";
+}

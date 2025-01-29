@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* width, max and min-width, height , min, max-height */
+/* medai query */
+/* linear gradient */
+/* animation and transition */
+/* width, max-width and min-width/ height max-height and min-height */
+/* @media screen and (min-width: 550px) {
+  .one {
+    background-color: red;
+  }
+}
+.two {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(to top, #333, rgb(255, 0, 255));
+  transition-property: width;
+  transition-duration: 10s;
+  transition-timing-function: ease-out;
+} */
+/* pesudo class and pseudo element */
+/* :, :: */
+/* classes -> hover, visited, link, active,  */
+/* :: -> element , after , before  */
+/* transition */
+/* .two:hover {
+  width: 500px;
+  background: linear-gradient(to left, #a71919, #333);
+}
+.three::after {
+  content: url("https://plus.unsplash.com/premium_photo-1723299602204-deac42432f93?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8");
+} */
+
+/* animation -> properties -. name, duration,  */
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.four {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border-radius: 50%;
+  position: relative;
+  animation: shishir ease 5s infinite;
+}
+@keyframes shishir {
+  0% {
+    top: 250px;
+  }
+  25% {
+    top: -250px;
+  }
+  50% {
+    top: 250px;
+  }
+  75% {
+    bottom: -250px;
+  }
+  100% {
+    top: -250px;
+  }
+}
