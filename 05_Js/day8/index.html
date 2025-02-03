@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 onclick="myClick()">Events and dom</h1>
+    <h1 id="niresh">Events and dom id</h1>
+    <h2 class="niresh">Events and dom class</h1>
+    <h1 class="query" >Events and dom tagselector</h1>
+    <h4 >Events and dom query selector </h1>
+        <script>
+        // events in js -> onclick , onsubmit, onmouseover,
+        //  onmouseout, onkeydown, onkeyup, onkeypress, onload,
+        //  onunload, onchange, onfocus, onblur, onselect, onreset,
+        //  onresize, onscroll, ondrag, ondrop, ondragstart, 
+        // ondragend, ondragover, ondragenter
+        function myClick(){
+            alert("Hello world");
+        }
+        let niresh = document.getElementById("niresh")
+        niresh.addEventListener("click",() => {
+            return alert("Hello niresh")
+        })
+        // document.get Elementbyid(id). click
+
+        // DOM -> DOCUMENT OBJECT MODEL
+        // selector -> element, id, class, tag, attribute
+        // id selection -> document.getElementById("id")
+        // element -> document.getElementByTagName("tag")
+        // class -> document.getElementsByClassName("class")[index]
+        // querySelector -> document.querySelector("selector")
+        // querySelectorAll -> document.querySelectorAll("selector")
+        // id 
+        // class selector
+        document.getElementsByClassName('niresh')[0].addEventListener("click", ()=>{
+           return  alert("class selector")
+        })
+        // tag selector
+        document.getElementsByTagName("h4")[0].addEventListener("click", ()=>{
+            return alert("tag selector ")
+        })
+        // query selector -> 
+        document.querySelector(".query").addEventListener("click",()=>{
+            return alert("Add event listiner")
+        })
+        // how to implement the css properties
+        // .style.properties = value
+        let abc = document.getElementsByClassName("query")
+        abc[0].style.color = "red"
+        abc[0].style.backgroundColor = "black"
+
+        
+    </script>
+</body>
+</html>

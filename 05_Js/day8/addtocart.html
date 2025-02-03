@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+<body class="bg-gray-200 w-[50vw] h-[100vh] mx-auto flex flex-col justify-center items-center">
+    <h1 class="text-2xl font-bold text-center my-10">
+    Your cart: 
+
+    </h1>
+        <div>
+            <div class="bg-white my-10 mx-10  flex justify-between items-center p-4">
+                <img src="https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8amVhbnN8ZW58MHx8MHx8fDA%3D" alt=""
+                class="w-[100px] h-[100px] object-cover rounded-lg">
+                <div class="text-left">
+                    <h2 class="text-xl ">Product name: <span class="font-bold">Jeans</span></h2>
+                    <p class="text-xl">Product price : <span class="font-bold" id="initial">200</span></p>
+                </div>
+                <div class="flex justify-between items-center m-3">
+                    <button id="increment" class="py-2 px-4 bg-black text-white">+</button>
+                    <span id="values" class="border-2 border-black px-4 py-2">1</span>
+                    <button id="decrement"class="py-2 px-4 bg-black text-white">-</button>
+                </div>
+            </div>
+            <div class="bg-white my-10 mx-10  flex justify-between items-center p-4">
+                <img src="https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8amVhbnN8ZW58MHx8MHx8fDA%3D" alt=""
+                class="w-[100px] h-[100px] object-cover rounded-lg">
+                <div class="text-left">
+                    <h2 class="text-xl ">Product name: <span class="font-bold">Jeans</span></h2>
+                    <p class="text-xl">Product price : <span class="font-bold" id="initial">200</span></p>
+                </div>
+                <div class="flex justify-between items-center m-3">
+                    <button id="increment" class="py-2 px-4 bg-black text-white">+</button>
+                    <span id="values" class="border-2 border-black px-4 py-2">1</span>
+                    <button id="decrement"class="py-2 px-4 bg-black text-white">-</button>
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+        let inc = document.getElementById("increment")
+        let dec = document.getElementById("decrement")
+        let values = document.getElementById("values")
+        let total = 1
+        let initial = document.getElementById("initial")
+        let price = 200
+
+        inc.addEventListener('click', ()=>{
+             if(total <10){
+                total++;
+                values.innerHTML = total;
+                price  = total * 200;
+                initial.innerHTML = price;                
+             }else{
+                alert("it will go more than 10")
+             }
+        })
+        dec.addEventListener('click', ()=>{
+             if(total >1){
+                total--;
+                values.innerHTML = total;
+                price  = total * 200;
+                initial.innerHTML = price;                
+             }else{
+                alert("it will not show")
+             }
+        })
+
+    </script>
+</body>
+</html>

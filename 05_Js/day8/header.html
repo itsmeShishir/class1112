@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailind Css Project</title>
+    <!-- icons -> font awesome icons and tailwind css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 font-[cursive]">
+    <!-- heading -->
+    <nav class="w-full md:fixed md:bg-white md:z-10">
+      <div
+        class="container md:w-[75vw] flex justify-between items-center mx-auto h-[9vh]"
+      >
+        <h1 class="text-3xl font-bold">
+          <span class="text-green-500 text-4xl">L</span>aundries<span class=""
+            ><i class="fas fa-hands-wash text-green-500"></i
+          ></span>
+        </h1>
+        <div class="flex md:gap-10 items-center">
+          <div class="hidden md:flex gap-5 font-medium items-center">
+            <a href="#" class="text-green-500">Home</a>
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >About</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Services</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Blog</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Pages</a
+            >
+            <a
+              href="#"
+              class="hover:text-green-500 transition ease-in-out duration-700"
+              >Contact</a
+            >
+            <form class="">
+              <input
+                type="text"
+                placeholder="Enter keyword ..."
+                class="font-normal py-1 px-5 border-2 border-black rounded-l-full"
+              />
+              <button
+                class="py-1 border-2 border-green-500 px-5 bg-green-500 rounded-r-full hover:text-white hover:bg-black hover:border-black transition ease-in-out duration-[2s]"
+                type="submit"
+              >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+          </div class="w-20 h-10 bg-green-500 rounded-full flex gap-10">
+          <i class="fa-regular fa-moon text-2xl"></i>
+          <i class="fa-solid fa-bars md:hidden"></i>        
+        </div>
+      </div>
+    </nav>
+
+    <!-- mobile -->
+    <div id="mobilemenu" class=" flex flex-col gap-5 md:hidden bg-green-100 py-10 font-medium items-center">
+        <a href="#" class="text-green-500">Home</a>
+        <a
+          href="#"
+          class="hover:text-green-500 transition ease-in-out duration-700"
+          >About</a
+        >
+        <a
+          href="#"
+          class="hover:text-green-500 transition ease-in-out duration-700"
+          >Services</a
+        >
+        <a
+          href="#"
+          class="hover:text-green-500 transition ease-in-out duration-700"
+          >Blog</a
+        >
+        <a
+          href="#"
+          class="hover:text-green-500 transition ease-in-out duration-700"
+          >Pages</a
+        >
+        <a
+          href="#"
+          class="hover:text-green-500 transition ease-in-out duration-700"
+          >Contact</a
+        >
+        <form class="">
+          <input
+            type="text"
+            placeholder="Enter keyword ..."
+            class="font-normal py-1 px-5 border-2 border-black rounded-l-full"
+          />
+          <button
+            class="py-1 border-2 border-green-500 px-5 bg-green-500 rounded-r-full hover:text-white hover:bg-black hover:border-black transition ease-in-out duration-[2s]"
+            type="submit"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <script>
+            let mobilemenu = document.getElementById("mobilemenu")
+            let bars = document.querySelector(".fa-bars")
+
+            bars.addEventListener("click",()=>{
+                if(mobilemenu.style.display === "none"){
+                    mobilemenu.style.display = "block"
+                }else{
+                    mobilemenu.style.display = "none"
+                }
+            })
+
+        </script>
+    </body>
+</html>
