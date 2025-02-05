@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 ">
+    <!-- div slider -->
+    <div class="container mx-auto bg-white p-5 rounded-lg shadow-lg h-[100vh] w-[50vw]">
+        <div class="relative h-[50vh] top-0 left-0 flex gap-5" >
+            <img class="absolute top-0 left-0 w-[50vw] z:[-10]"
+                src="https://plus.unsplash.com/premium_photo-1737697221626-8a957abad2df?q=80&w=2083&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="image1">
+            <img class="absolute top-0 left-0 w-[50vw] z:[-10]"
+                src="https://images.unsplash.com/photo-1738571574302-3312deda0aa3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D"
+            alt="image1">
+            <img class="absolute top-0 left-0 w-[50vw] z:[-10]"
+                src="https://plus.unsplash.com/premium_photo-1738637796692-d29db83fb7c4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyOXx8fGVufDB8fHx8fA%3D%3D"
+            alt="image1">
+            <div class="absolute w-full flex justify-between items-center h-full gap-5 ">
+                <button class="bg-gray-500 text-white p-2 rounded-lg">Prev</button>
+                <button class="bg-gray-500 text-white p-2 rounded-lg">Next</button>
+            </div>
+        </div>
+        
+        
+    </div>
+    <script>
+        let images = document.querySelectorAll('img');
+        let prev = document.querySelector('button');
+        let next = document.querySelectorAll('button')[1];
+        let i = 0;
+        next.addEventListener('click',()=>{
+            images[i].classList.remove('z-10');
+            i++;
+            if(i>=images.length){
+                i=0;
+            }
+            images[i].classList.add('z-10');
+        })
+        prev.addEventListener('click',()=>{
+            images[i].classList.remove('z-10');
+            i--;
+            if(i<0){
+                i=images.length-1;
+            }
+            images[i].classList.add('z-10');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1>No image </h1>
+    <img src="" alt="">
+    <!-- how to create an element in dom , node -->
+    <script>
+        // local storage
+        // setItem, getItem, removeItem, clear
+        localStorage.setItem('name', 'niresh');
+        localStorage.setItem('age', '28');
+        let name = localStorage.getItem('name');
+        console.log(name);
+        localStorage.removeItem('age');
+         
+        localStorage.clear();
+       
+        // Add an element -> setattribute, remove attribute, get attribute
+        let element = document.querySelector('img');
+        element.setAttribute('src', 'https://images.unsplash.com/photo-1738432323553-b9471e2239b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8');
+        element.setAttribute('alt', 'image');
+        element.setAttribute('class', 'w-[200px] h-[200px]');
+    </script>
+</body>
+</html>

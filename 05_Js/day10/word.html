@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-200 ">
+    <!-- word show -->
+     <h1 class="text-3xl font-bold text-red-500 ">Hello <span id="posiotion" class="text-blue-900 text-4xl ">|</span></h1>
+
+    <script>
+        let word = ["frontend developer", "backend developer", "fullstack developer", "web developer", "mobile developer"];
+        let posiotion = document.getElementById('posiotion');
+        let i = 0;
+        setInterval(() => {
+            posiotion.textContent = word[i];
+            i++;
+            if (i >= word.length) {
+                i = 0;
+            }
+        }, 2000);
+    </script>
+    
+    
+</body>
+
+</html>
