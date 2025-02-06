@@ -18,70 +18,72 @@
         
     </ul>
     <script>
+      //load all html and css
+        let body = document.querySelector('body');
         let form = document.getElementById('form');
         let list = document.getElementById('list');
         let inputs = document.getElementById('inputs');
 
-        // store in local storage 
-        let tasks = [];
-        let getTask = localStorage.getItem('tasks');   
-        if(getTask){
-            tasks = JSON.parse(getTask);
-            tasks.map((task)=>{
+           
+
+
+            
+        // DomContent loaded event
+        document.addEventListener('DOMContentLoaded',()=>{
+            let body = document.querySelector('body');
+            body.classList.add('bg-gray-200');
+             // store in local storage 
+            let tasks = [];
+            let getTask = localStorage.getItem('tasks');
+            if (getTask) {
+                tasks = JSON.parse(getTask);
+                tasks.map((task) => {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<span class="text-gray-800 font-bold">${task}</span>
+            <button class="abc bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="one">Delete</button>
+        `;
+                    li.classList.add('border-2', 'border-gray-300', 'px-10', 'py-2', 'rounded-lg', 'text-center');
+                    let one = document.getElementById('one');
+                    li.addEventListener('click', () => {
+                        li.remove();
+                        let index = tasks.indexOf(task);
+                        tasks.splice(index, 1);
+                        localStorage.setItem('tasks', JSON.stringify(tasks));
+                    })
+                    list.appendChild(li);
+                })
+            }
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let input = inputs.value;
+                console.log(input);
+                // add task to the list
+                tasks.push(input);
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                // display the task
                 let li = document.createElement('li');
-                li.innerHTML =  `<span class="text-gray-800 font-bold">${task}</span>
+
+                li.innerHTML = `<span class="text-gray-800 font-bold">${input}</span>
             <button class="abc bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="one">Delete</button>
         `;
                 li.classList.add('border-2', 'border-gray-300', 'p-2', 'rounded-lg', 'text-center');
+
                 let one = document.getElementById('one');
-                li.addEventListener('click', ()=>{
-                    li.remove();
-                    let index = tasks.indexOf(task);
+                // remove task
+                one.addEventListener('click', () => {
+                    one.remove();
+                    // remove from the local storage
+                    let index = tasks.indexOf(input);
                     tasks.splice(index, 1);
                     localStorage.setItem('tasks', JSON.stringify(tasks));
                 })
                 list.appendChild(li);
+
+                // empty input after submition
+                inputs.value = '';
             })
-            
-        }
-
-        
-        form.addEventListener("submit", (e)=>{
-            e.preventDefault();
-            let input = inputs.value;
-            console.log(input);
-            // add task to the list
-            tasks.push(input);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            // display the task
-            let li = document.createElement('li');
-            
-            li.innerHTML =  `<span class="text-gray-800 font-bold">${input}</span>
-            <button class="abc bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="one">Delete</button>
-        `;
-            li.classList.add('border-2', 'border-gray-300', 'p-2', 'rounded-lg', 'text-center');
-           
-            let one = document.getElementById('one');
-            // remove task
-            one.addEventListener('click', ()=>{
-                one.remove();
-                // remove from the local storage
-                let index = tasks.indexOf(input);
-                tasks.splice(index, 1);
-                localStorage.setItem('tasks', JSON.stringify(tasks));
-            })
-            list.appendChild(li);
-            // get all the tasks from the local storage
-            
-            
-            // empty input after submition
-            inputs.value = '';
-
-
-
-
-            
         })
     </script>
 </body>
 </html>
+
