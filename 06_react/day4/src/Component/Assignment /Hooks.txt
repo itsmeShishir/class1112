@@ -1,0 +1,2 @@
+dark mode light model -> all using taiwlind
+slider using only usestate -> 
