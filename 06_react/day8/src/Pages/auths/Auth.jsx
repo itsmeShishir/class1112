@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 
 function Auth() {
   return (
-    <div className="bg-red-500 h-screen">
+    <div className="bg-gray-700 h-full">
         <Outlet />
     </div>
   )
