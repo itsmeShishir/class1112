@@ -73,9 +73,7 @@ function Navbar() {
                     <p className="text-sm font-medium text-gray-800 dark:text-white">{getEmail}</p>
                   </div>
                   <ul className="py-2">
-                    <li><NavLink to="/dashboard" className="dropdown-link">Dashboard</NavLink></li>
-                    <li><NavLink to="/settings" className="dropdown-link">Settings</NavLink></li>
-                    <li><NavLink to="/earnings" className="dropdown-link">Earnings</NavLink></li>
+                    <li><NavLink to="/account" className="dropdown-link">Dashboard</NavLink></li>
                   </ul>
                   <div className="py-2">
                     <button onClick={logout} className="block w-full text-left dropdown-link text-red-500">Sign out</button>
