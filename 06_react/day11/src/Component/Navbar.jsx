@@ -1,124 +1,106 @@
-import {useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+
 function Navbar() {
-    let [navbar, setNavbar] = useState(false)
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    let [open, setOpen] = useState(false)
-    let changeNavbar = ()=>{
-        setNavbar(!navbar)
-    }
-    let changeOpen = ()=>{
-        setOpen(!open)
-    }
-    let getemail = localStorage.getItem("email")
-    console.log(getemail);
+  const getEmail = localStorage.getItem("email");
+  const navigate = useNavigate();
 
-    let logout = ()=>{
-      localStorage.clear()
-    }
-    
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login"); // Redirect to login after logout
+  };
+
   return (
     <>
-<nav className="bg-white border-gray-200 dark:bg-gray-900">
-  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-    </a>
-    <button onClick={changeNavbar} data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span className="sr-only">Open main menu</span>
-        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <NavLink to="/" className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="about" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</NavLink>
-        </li>
-        <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-        </li>
-        <li>
-          <NavLink to="contact" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</NavLink>
-        </li>
-      </ul>
-    </div>
+      {/* Navbar Container */}
+      <nav className="bg-white shadow-md dark:bg-gray-900">
+        <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+          
+          {/* Logo */}
+          <NavLink to="/" className="flex items-center space-x-3">
+            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Logo" />
+            <span className="text-2xl font-semibold text-gray-800 dark:text-white">Flowbite</span>
+          </NavLink>
 
-    {
-      getemail == null ? 
-      <>
-      <div className='flex gap-10'>
-         <NavLink to="login" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</NavLink>
-        <NavLink to="register" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</NavLink>
-     
-      </div>
-      </>:
-      <>
-      <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
-    <span className="sr-only">Open user menu</span>
-    <img onClick={changeOpen} className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
-    </button>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setNavbarOpen(!navbarOpen)}
+            className="md:hidden p-2 text-gray-500 rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
 
+          {/* Navigation Links */}
+          <div className={`w-full md:w-auto md:flex ${navbarOpen ? "block" : "hidden"}`}>
+            <ul className="flex flex-col md:flex-row md:space-x-6 p-4 md:p-0 bg-gray-50 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900">
+              <li>
+                <NavLink to="/" className="nav-link">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about" className="nav-link">About</NavLink>
+              </li>
+              <li>
+                <NavLink to="/services" className="nav-link">Services</NavLink>
+              </li>
+              <li>
+                <NavLink to="/pricing" className="nav-link">Pricing</NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact" className="nav-link">Contact</NavLink>
+              </li>
+            </ul>
+          </div>
+
+          {/* Authentication / User Dropdown */}
+          {getEmail ? (
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center text-sm bg-gray-800 rounded-full focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600"
+              >
+                <img className="w-8 h-8 rounded-full" src="https://via.placeholder.com/40" alt="User Avatar" />
+              </button>
+
+              {/* User Dropdown */}
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-700">
+                  <div className="p-3 border-b dark:border-gray-600">
+                    <p className="text-sm font-medium text-gray-800 dark:text-white">{getEmail}</p>
+                  </div>
+                  <ul className="py-2">
+                    <li><NavLink to="/dashboard" className="dropdown-link">Dashboard</NavLink></li>
+                    <li><NavLink to="/settings" className="dropdown-link">Settings</NavLink></li>
+                    <li><NavLink to="/earnings" className="dropdown-link">Earnings</NavLink></li>
+                  </ul>
+                  <div className="py-2">
+                    <button onClick={logout} className="block w-full text-left dropdown-link text-red-500">Sign out</button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="hidden md:flex space-x-4">
+              <NavLink to="/login" className="auth-button">Login</NavLink>
+              <NavLink to="/register" className="auth-button">Register</NavLink>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Mobile Auth Links */}
+      {!getEmail && navbarOpen && (
+        <div className="md:hidden flex flex-col items-center space-y-3 p-4 bg-gray-50 dark:bg-gray-800">
+          <NavLink to="/login" className="auth-button">Login</NavLink>
+          <NavLink to="/register" className="auth-button">Register</NavLink>
+        </div>
+      )}
     </>
-    }
-
-  </div>
-</nav>
-{
-    navbar ? 
-     <div className="md:hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <NavLink to="/" className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="about" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</NavLink>
-        </li>
-        <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-        </li>
-        <li>
-          <NavLink to="contact" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</NavLink>
-        </li>
-      </ul>
-    </div>: <div></div>
+  );
 }
 
-{
-      open && 
-       <div id="dropdownAvatar" className="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-        <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-          <div>Bonnie Green</div>
-          <div className="font-medium truncate">{getemail}</div>
-        </div>
-        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
-          <li>
-            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-          </li>
-        </ul>
-        <div className="py-2">
-          <a onClick={logout} href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-        </div>
-    </div>
-    }</>
-
-  )
-}
-
-export default Navbar
+export default Navbar;

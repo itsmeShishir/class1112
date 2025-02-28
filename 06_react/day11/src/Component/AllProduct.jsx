@@ -1,49 +1,76 @@
-import {useState, useEffect} from 'react'
-import fetchData from '../services/FetchService'
-import {Link} from 'react-router-dom'
-function AllProduct() {
-    let [product, SetProduct] = useState([])
-     useEffect(()=>{
-    let fetchDatas = async()=>{
-      let response = await fetchData('https://python.bhandarishishir.com.np/api/products/')
-      SetProduct(response.data)
-    }
-    fetchDatas()
-  },[])
+import { useState, useEffect } from "react";
+import fetchData from "../services/FetchService";
+import { Link } from "react-router-dom";
 
-   // description -> split , slice, join
-  let descriptionData = (desc, limit = 20 )=>{
-    let description = desc.split(' ')
-    if(description.length > limit){
-      return description.slice(0, limit).join(' ') + '...'
-    }
-    return desc
-  }
+function AllProduct() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        let response = await fetchData("https://python.bhandarishishir.com.np/api/products/");
+        setProducts(response.data);
+      } catch (err) {
+        setError("Failed to load products. Please try again later.");
+        console.log(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Truncate description to a readable length
+  const truncateDescription = (desc, limit = 20) => {
+    if (!desc) return "";
+    let words = desc.split(" ");
+    return words.length > limit ? words.slice(0, limit).join(" ") + "..." : desc;
+  };
 
   return (
-    <div>
-    <h1 className='text-center text-green-500 font-extrabold text-2xl'>All Products</h1>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-4 items-center '>
-        {
-          product.map((items, index)=>{
-            return(
-              <Link to={`singlepage/${items.id}`} key={index} className='bg-gray-100 p-4 rounded-lg shadow-md flex flex-col
-               items-center gap-5 '>
-                <img src={items.images } alt="" className='w-[250px]'/>
-                <h1 className='text-4xl font-bold'>
-                  {items.title}
-                </h1>
-                <p className='text-md font-medium'>{descriptionData(items.description)}</p>
-                <p className='text-2xl font-bold'>price:{items.price}</p>
-                <p>{items.category_name}</p>
-                <p>{items.stock}</p>
-              </Link>
-            )
-          })
-        }
+    <div className="w-[85vw] mx-auto mt-6">
+      <h1 className="text-center text-green-600 font-extrabold text-3xl mb-6">All Products</h1>
+
+      {/* Loading State */}
+      {loading && <p className="text-center text-lg font-semibold">Loading products...</p>}
+
+      {/* Error State */}
+      {error && <p className="text-center text-red-500">{error}</p>}
+
+      {/* Product Grid */}
+      {!loading && !error && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map((item, index) => (
+            <Link
+              to={`/singlepage/${item.id}`}
+              key={index}
+              className="group block bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative w-full h-56 flex items-center justify-center bg-gray-100 rounded-t-lg">
+                <img
+                  src={item.images}
+                  alt={item.title}
+                  className="h-full object-cover rounded-lg transition-transform group-hover:scale-105 duration-300"
+                />
+              </div>
+              <div className="p-4">
+                <h2 className="text-xl font-semibold text-gray-800 group-hover:text-green-600 transition-colors">
+                  {item.title}
+                </h2>
+                <p className="text-sm text-gray-600 mt-2">{truncateDescription(item.description)}</p>
+                <p className="text-lg font-bold text-green-500 mt-2">Price: ${item.price}</p>
+                <p className="text-sm text-gray-500">Category: {item.category_name}</p>
+                <p className="text-sm text-gray-500">Stock: {item.stock}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
-    </div>
-  )
+  );
 }
 
-export default AllProduct
+export default AllProduct;

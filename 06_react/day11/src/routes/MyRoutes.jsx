@@ -11,6 +11,7 @@ import SingleProduct from '../Pages/SingleProduct'
 import UserDetails from '../Pages/UserDashboard/UserDetails'
 import UserProfile from '../Pages/UserDashboard/UserProfile'
 import { ToastContainer } from 'react-toastify';
+import Dashboard from '../Pages/UserDashboard/Dashboard'
 function MyRoutes() {
   return (
    <>
@@ -28,8 +29,10 @@ function MyRoutes() {
                 <Route path='login' element={<Login />}></Route>
                 <Route path='register' element={<Register />}></Route>
             </Route>
-            <Route path="account" element={<UserDetails />} />
-            <Route path="changepassword" element={<UserProfile />} />
+            <Route element={<Dashboard />}>
+                <Route path='account' element={<UserDetails />}></Route>
+                <Route path='changepassword' element={<UserProfile />}></Route>
+            </Route>
         </Route>
         
     </Routes>
