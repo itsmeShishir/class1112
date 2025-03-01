@@ -16,10 +16,10 @@ const login = async (email, password, navigate) => {
         localStorage.setItem('phone_number', response.data.phone_number)
         localStorage.setItem('role', response.data.role)
         localStorage.setItem('user_id', response.data.user_id)
-        if(response.status === 200){
-            navigate('/')
+        if(response.data.role === "0"){
+            navigate('/admin')
         }else{
-            navigate('/login')
+            navigate('/account')
         }
     }catch(e){
         console.log(e)

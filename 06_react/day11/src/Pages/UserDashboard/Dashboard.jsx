@@ -30,7 +30,7 @@ function Dashboard() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="update-profile" className="dashboard-link flex items-center mx-auto w-[20vh] gap-5">
+              <NavLink to="/updateprofile" className="dashboard-link flex items-center mx-auto w-[20vh] gap-5">
                 <FaEdit className="text-green-500" />
                 Update Profile
               </NavLink>

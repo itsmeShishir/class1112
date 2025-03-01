@@ -12,6 +12,11 @@ import UserDetails from '../Pages/UserDashboard/UserDetails'
 import UserProfile from '../Pages/UserDashboard/UserProfile'
 import { ToastContainer } from 'react-toastify';
 import Dashboard from '../Pages/UserDashboard/Dashboard'
+import ChangeProfile from '../Pages/UserDashboard/ChangeProfile'
+import PrivateRoute from "../routes/Protectedroute"
+import AdminPage from '../Pages/AdminPage'
+import Errorpage from '../Pages/error/Errorpage'
+
 function MyRoutes() {
   return (
    <>
@@ -24,7 +29,7 @@ function MyRoutes() {
             {/* how to create dynamic routes in react js */}
             <Route path='singlecategory/:id' element={<SingleCategory />} />
             <Route path='singlepage/:id' element={<SingleProduct />} />
-            <Route path="*" element={<><h1>No Page found</h1></>} />
+            <Route path="*" element={<Errorpage />} />
             <Route element={<Auth />}>
                 <Route path='login' element={<Login />}></Route>
                 <Route path='register' element={<Register />}></Route>
@@ -32,6 +37,13 @@ function MyRoutes() {
             <Route element={<Dashboard />}>
                 <Route path='account' element={<UserDetails />}></Route>
                 <Route path='changepassword' element={<UserProfile />}></Route>
+                <Route path='updateprofile' element={<ChangeProfile />}></Route>
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={['0']} />}>
+                <Route path='admin' element={<AdminPage />}></Route>
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={['1']} />}>
+                <Route path='account' element={<UserDetails />}></Route>
             </Route>
         </Route>
         

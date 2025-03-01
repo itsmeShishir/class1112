@@ -1,14 +1,22 @@
-import { useNavigate } from 'react-router-dom'
-function Protectedroute() {
-    const token = localStorage.getItem('token')
-    let navigate = useNavigate();
-    
-    if(!token){
-        navigate('/login')
-    }
-    return (
-        <div>Protectedroute</div>
-    )
-}
+import { Navigate, Outlet } from 'react-router-dom';
 
-export default Protectedroute
+const PrivateRoute = ({ children, allowedRoles }) => {
+
+  const isAuthenticated = localStorage.getItem('username') && localStorage.getItem('email');
+  
+
+  const userRole = localStorage.getItem('role');
+  
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  if (allowedRoles && !allowedRoles.includes(userRole)) {
+    return <Navigate to="/" replace />; 
+  }
+  
+  return children ? children : <Outlet />;
+};
+
+export default PrivateRoute;
