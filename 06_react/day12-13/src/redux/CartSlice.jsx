@@ -36,46 +36,65 @@ const CartSlice = createSlice( {
             
         },
         removefromcart(state, action){
-            // check if the item is already in the cart and if it is remove it
-            const existingItem = state.items.find(item => item.id === action.payload)
+            const id = action.payload
+            const existingItem = state.items.find(item => item.id === id)
             if(existingItem){
-                state.items = state.items.filter(item => item.id !== action.payload)
-            }else{
-                return
+                state.totalAmount -= existingItem.price * existingItem.quantity
+                state.totalQuantity -= existingItem.quantity
+                state.items = state.items.filter(item => item.id !== id)
             }
         },
         clearcart(state, action){
             state.items = []
             state.totalAmount = 0
             state.totalQuantity = 0
+
         },
         incrementquantity(state, action){
-            const existingItem = state.items.find(item => item.id === id)
-            if(existingItem){
-                if(existingItem.stock === existingItem.quantity){
-                    return 
-                }
-                existingItem.quantity++
-            }
-            
-        },
-        decrementquantity(state, action){
+            const id = action.payload
             const existingItem = state.items.find(item => item.id === id)
             if(existingItem){
                 if(existingItem.stock === existingItem.quantity){
                     return
                 }
+                existingItem.quantity++
+            }
+        },
+        decrementquantity(state, action){
+            const id = action.payload
+            const existingItem = state.items.find(item => item.id === id)
+            if(existingItem){
+                if(existingItem.quantity === 1){
+                    return
+                }
                 existingItem.quantity--
             }
         },
+        // total qunatity and total price
+        totalAmount(state, action){
+            const amount = state.items.reduce((total, item) => total + item.price * item.quantity, 0)
+            state.totalAmount = amount
+        },
+
+        totalQuantity(state, action){
+            const quantity = state.items.reduce((total, item) => total + item.quantity, 0)
+            state.totalQuantity = quantity
+            
+        }
     }
+    
+
 })
+
+
 
 export const {
     addtocart, 
     removefromcart, 
     clearcart, 
     incrementquantity, 
+    totalAmount,
+    totalQuantity,
     decrementquantity} = CartSlice.actions
 
 export default CartSlice.reducer; // export the reducer
