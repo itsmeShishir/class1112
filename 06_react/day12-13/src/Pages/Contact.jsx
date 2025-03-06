@@ -1,7 +1,12 @@
-
+import { Helmet } from "react-helmet"
 function Contact() {
   return (
-    <div>Contact</div>
+
+    <div>
+      <Helmet>
+        <title>Contact Us</title>
+      </Helmet>
+      Contact</div>
   )
 }
 

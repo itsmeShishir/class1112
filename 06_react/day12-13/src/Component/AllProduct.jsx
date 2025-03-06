@@ -1,28 +1,17 @@
-import { useState, useEffect } from "react";
-import fetchData from "../services/FetchService";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
 
 function AllProduct() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { isPending, error, data } = useQuery({
+    queryKey: ['allproduct'],
+    queryFn: () =>
+      fetch('https://python.bhandarishishir.com.np/api/products/').then((res) =>
+        res.json(),
+      ),
+  })
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        let response = await fetchData("https://python.bhandarishishir.com.np/api/products/");
-        setProducts(response.data);
-      } catch (err) {
-        setError("Failed to load products. Please try again later.");
-        console.log(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
+ 
   // Truncate description to a readable length
   const truncateDescription = (desc, limit = 20) => {
     if (!desc) return "";
@@ -35,15 +24,15 @@ function AllProduct() {
       <h1 className="text-center text-green-600 font-extrabold text-3xl mb-6">All Products</h1>
 
       {/* Loading State */}
-      {loading && <p className="text-center text-lg font-semibold">Loading products...</p>}
+      {isPending && <p className="text-center text-lg font-semibold">Loading products...</p>}
 
       {/* Error State */}
       {error && <p className="text-center text-red-500">{error}</p>}
 
       {/* Product Grid */}
-      {!loading && !error && (
+      {!isPending && !error && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((item, index) => (
+          {data.map((item, index) => (
             <Link
               to={`/singlepage/${item.id}`}
               key={index}
