@@ -2,7 +2,7 @@ import express from "express"
 import Connect from "./config/db.js"
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
-
+import Categoryroute from "./routes/CategoryRoute.js";
 // dot env used
 dotenv.config();
 
@@ -14,6 +14,8 @@ Connect();
 
 // middleware
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use("", Categoryroute);
 
 app.get("/", (req, res)=>{
     res.send("<h1>Hello worlds and name is shishir bhandari</h1>")
