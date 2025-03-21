@@ -2,6 +2,8 @@ import UserModel from "../models/UserModel.js";
 import UserTokenModel from "../models/UserTokenModel.js";
 import bcrypt from "bcryptjs";
 import jsonwebtoken from "jsonwebtoken";
+import { OAuth2Client } from "google-auth-library";
+
 // -> login , register, update password, update profile, logout, get all user, 
 const LoginContoller = async (req, res) => {
     try{
@@ -16,7 +18,14 @@ const LoginContoller = async (req, res) => {
         }
         const token = jsonwebtoken.sign({id: user._id, email: user.email}, process.env.SECURE, {expiresIn: "1d"});
         const userToken = await UserTokenModel.create({userId: user._id, token});
-        res.status(200).json({user, token, message: "User logged in successfully"});
+        res.status(200).json({
+            email: user.email, 
+            username: user.username, 
+            is_Verified: user.isVerified, 
+            role: user.role, 
+            user_id: user._id,
+            token, 
+            message: "User logged in successfully"});
     }catch(e){
         console.log(e.message);
         
@@ -119,11 +128,44 @@ const GetAllUserController = async (req, res) => {
     }
 }
 
+const client = new OAuth2Client(process.env.CLIENT_ID);
+
+const GooogleLoginController = async (req, res) => {
+    const {id_token} = req.body;
+    if(!id_token){
+        return res.status(400).json({message: "Invalid token"});
+    }
+    try{
+        const ticket = await client.verifyIdToken({
+            idToken: id_token,
+            audience: process.env.CLIENT_ID,
+        });
+        const {email, name} = ticket.getPayload();
+        const user = await UserModel.findOne({email});
+        if(!user){
+            return res.status(400).json({message: "User not found"});
+        }
+        const token = jsonwebtoken.sign({id: user._id, email: user.email}, process.env.SECURE, {expiresIn: "10d"});
+        const userToken = await UserTokenModel.create({userId: user._id, token});
+        res.status(200).json({
+            email: user.email, 
+            username: user.username, 
+            is_Verified: user.isVerified, 
+            role: user.role, 
+            user_id: user._id,
+            token,
+        });
+    }catch(e){
+        console.log(e.message);
+    }
+}
+
 export {
     LoginContoller,
     RegisterController,
     UpdatePasswordController,
     UpdateProfileController,
     LogoutController,
-    GetAllUserController
+    GetAllUserController,
+    GooogleLoginController,
 };
