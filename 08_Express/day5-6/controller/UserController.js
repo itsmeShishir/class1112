@@ -131,34 +131,57 @@ const GetAllUserController = async (req, res) => {
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const GooogleLoginController = async (req, res) => {
-    const {id_token} = req.body;
-    if(!id_token){
-        return res.status(400).json({message: "Invalid token"});
+    const { id_token } = req.body;
+    if (!id_token) {
+        return res.status(400).json({ message: "Invalid token" });
     }
-    try{
+
+    try {
         const ticket = await client.verifyIdToken({
             idToken: id_token,
             audience: process.env.CLIENT_ID,
         });
-        const {email, name} = ticket.getPayload();
-        const user = await UserModel.findOne({email});
-        if(!user){
-            return res.status(400).json({message: "User not found"});
+
+        const payload = ticket.getPayload();
+        const { email, name } = payload;
+
+        let user = await UserModel.findOne({ email });
+
+        // ✅ Auto-create user if not found
+        if (!user) {
+            user = await UserModel.create({
+                email,
+                username: name || email.split('@')[0],
+                isVerified: true,
+                role: "user", // default role
+            });
         }
-        const token = jsonwebtoken.sign({id: user._id, email: user.email}, process.env.SECURE, {expiresIn: "10d"});
-        const userToken = await UserTokenModel.create({userId: user._id, token});
+
+        // Generate JWT token
+        const token = jsonwebtoken.sign(
+            { id: user._id, email: user.email },
+            process.env.SECURE,
+            { expiresIn: "10d" }
+        );
+
+        // Save token to DB
+        await UserTokenModel.create({ userId: user._id, token });
+
+        // Send user info back
         res.status(200).json({
-            email: user.email, 
-            username: user.username, 
-            is_Verified: user.isVerified, 
-            role: user.role, 
+            email: user.email,
+            username: user.username,
+            is_Verified: user.isVerified,
+            role: user.role,
             user_id: user._id,
             token,
         });
-    }catch(e){
-        console.log(e.message);
+    } catch (e) {
+        console.log("Google Login Error:", e.message);
+        res.status(500).json({ message: "Google login failed" });
     }
-}
+};
+
 
 export {
     LoginContoller,

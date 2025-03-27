@@ -1,26 +1,26 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const orderSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required: true,
-    },
-    productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "product",
-        required: true,
-    },
-    pxid:{
-        type: String,
-        required: true,
-    },
-    amount:{
-        type: Number,
-        required: true,
-    }
-}, {timestamps: true});
+const OrderSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
+  payment_status: {
+    type: String,
+    enum: ['Pending', 'Completed', 'Failed', 'Refunded'],
+    default: 'Pending',
+  },
+  payment_method: {
+    type: String,
+    enum: ['Khalti', 'Cash on Delivery'],
+    default: 'Cash on Delivery',
+  },
+  khalti_pidx: { type: String, unique: true, sparse: true },
 
-const OrderModel = mongoose.model("product", orderSchema);
+  shipping_name: String,
+  shipping_phone: String,
+  shipping_address: String,
+  shipping_city: String,
+  shipping_state: String,
+  shipping_zip: String,
+}, { timestamps: true });
 
-export default OrderModel;
+export default mongoose.model('order', OrderSchema);
+

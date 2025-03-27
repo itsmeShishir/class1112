@@ -6,6 +6,7 @@ import Categoryroute from "./routes/CategoryRoute.js";
 import productRoute from "./routes/ProductRoute.js";
 import upload from "./middleware/multer.js";
 import UserRoute from "./routes/UserRoute.js";
+import cors from "cors"
 // dot env used
 dotenv.config();
 
@@ -37,16 +38,20 @@ app.use("/uploads", async (req, res) => {
     }
 });
 // cors used _> 
-let url = ["http://localhost:5173"]
-app.use((req, res, next) => {
-    let origin = req.headers.origin;
-    if (url.includes(origin)) {
-        res.setHeader("Access-Control-Allow-Origin", origin);
-        res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+const allowedOrigins = ["http://localhost:5173"];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
     }
-    next();
-})
+  },
+  credentials: true,
+}));
+
+
 app.use("", UserRoute);
 app.use("", Categoryroute);
 app.use("", productRoute);

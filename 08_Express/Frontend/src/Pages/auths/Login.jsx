@@ -1,68 +1,79 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import login from "../../services/loginServices";
-import { GoogleLogin } from '@react-oauth/google';
 import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
+import { toast } from 'react-toastify';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  
   const navigate = useNavigate();
 
+  // Example local login handler
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password, navigate);
+      // call your local login endpoint, for example:
+      const response = await axios.post("http://localhost:3000/login", {
+        email,
+        password,
+      });
+      toast.success("Login successful")
+      console.log("Local login response:", response.data);
+      navigate("/account");
     } catch (err) {
-      setError("Invalid email or password");
-      console.log(err.message);
+      toast.error("Invalid email or password" + err.message)
     }
   };
+
+  // Google success callback
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     try {
-      // credentialResponse.credential is the Google ID token
+      // "credential" is the Google ID token
       const idToken = credentialResponse.credential;
 
-      // Send ID token to your backend for verification
-      const response = await axios.post(
-        "http://localhost:3000/google-login",
-        { id_token: idToken }
-      );
+      // POST to your Node backend
+      const response = await axios.post("http://localhost:3000/google-login", {
+        id_token: idToken,
+      });
       console.log("Google Login response:", response.data);
 
-      // Your backend should return tokens & user info
-      const { role, user_id, email, first_name, last_name } = response.data;
+      // Extract any data you want to store
+      const {
+        email,
+        username,
+        role,
+        user_id,
+        is_Verified,
+        token
+      } = response.data;
 
-      // Store tokens/user data as desired. Here, we set "username" for Navbar.
-      localStorage.setItem('token', response.data.token)
-        localStorage.setItem('email', response.data.email)
-        localStorage.setItem('username', response.data.username)
-        localStorage.setItem('role', response.data.role)
-        localStorage.setItem('user_id', response.data.user_id)
-        localStorage.setItem("is_Verified", response.data.is_Verified)
-
-      // Set username (for example, use first_name or a combination)
-      const username = first_name || email;
+      // Store in localStorage for example
+      localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
       localStorage.setItem("username", username);
+      localStorage.setItem("role", role);
+      localStorage.setItem("user_id", user_id);
+      localStorage.setItem("is_Verified", is_Verified);
 
-      // Redirect based on role
-      if(response.data.role === "admin"){
-        navigate('/admin')
-        }else{
-            navigate('/account')
-        }
+      // Navigate based on role
+      if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/account");
+      }
     } catch (err) {
       console.error(err);
       setError("Google login failed. Please try again.");
     }
   };
 
+  // Google error callback
   const handleGoogleLoginError = () => {
     setError("Google login failed. Please try again.");
   };
-
 
   return (
     <div className="text-center">
@@ -77,7 +88,7 @@ function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none"
           required
         />
         <input
@@ -85,28 +96,29 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none"
           required
         />
-        
         <button
           type="submit"
-          className="w-full py-2 mt-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-200"
+          className="w-full py-2 mt-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
         >
           Login
         </button>
       </form>
+
       <div className="mt-6 grid grid-cols-3 gap-3">
-              <div>
-                <GoogleLogin
-                onSuccess={handleGoogleLoginSuccess}
-                onError={handleGoogleLoginError}
-              />
-              </div>
-            </div>
+        <div>
+          {/* The Google Login button from @react-oauth/google */}
+          <GoogleLogin
+            onSuccess={handleGoogleLoginSuccess}
+            onError={handleGoogleLoginError}
+          />
+        </div>
+      </div>
 
       <p className="mt-4 text-sm">
-        {`Don't have an account?`}
+        Don’t have an account?{" "}
         <Link to="/register" className="text-blue-600 font-semibold hover:underline">
           Register
         </Link>

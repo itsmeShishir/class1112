@@ -6,12 +6,11 @@ function AllProduct() {
   const { isPending, error, data } = useQuery({
     queryKey: ['allproduct'],
     queryFn: () =>
-      fetch('"http://localhost:3000/get-products"').then((res) =>
+      fetch("http://localhost:3000/get-products").then((res) =>
         res.json(),
       ),
   })
 
- 
   // Truncate description to a readable length
   const truncateDescription = (desc, limit = 20) => {
     if (!desc) return "";
@@ -32,9 +31,9 @@ function AllProduct() {
       {/* Product Grid */}
       {!isPending && !error && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {data.product.map((item, index) => (
+          {data.products.map((item, index) => (
             <Link
-              to={`/singlepage/${item.id}`}
+              to={`/singlepage/${item._id}`}
               key={index}
               className="group block bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300"
             >

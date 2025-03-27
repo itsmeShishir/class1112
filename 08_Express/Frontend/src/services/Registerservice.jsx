@@ -1,18 +1,22 @@
 import axios from 'axios'
-const register = async (email, password, username, password2, phoneNumber, navigate ) => {
+import { toast } from 'react-toastify'
+
+const register = async (email, password, username, confiermPassword, navigate , toast) => {
     try{
-        let response = await axios.post("https://python.bhandarishishir.com.np/api/auth/register/", 
+        let response = await axios.post("http://localhost:3000/register", 
         {
         email: email,
         password: password,
         username: username,
-        password2: password2,
-        phone_number: phoneNumber
+        confiermPassword: confiermPassword,
         })
         if(response.status === 201){
+            toast.success("User Register Sucessfully")
             navigate('/login')
         }else{
+            toast.error("User Cannot be Register")
             navigate('/register')
+
         }
 
     }catch(e){

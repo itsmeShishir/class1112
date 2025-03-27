@@ -1,30 +1,39 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import register from "../../services/Registerservice";
+import { toast } from "react-toastify";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [confiermPassword, setconfiermPassword] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (password !== password2) {
-      setError("Passwords do not match!");
-      return;
-    }
-    try {
-      await register(email, password, username, password2, phoneNumber, navigate);
-    } catch (err) {
-      setError("Registration failed. Try again.");
-      console.log(err.message);
+    try{
+      let response = await axios.post("http://localhost:3000/register", 
+      {
+      email: email,
+      password: password,   
+      username: username,
+      confiermPassword: confiermPassword,
+      }).then((res) => {
+          toast.success("User Created Successfully" + res)
+          console.log(res);
+      }).catch((e)=>{
+        toast.error("User cannot be Created " + e.message)
+        console.log(e.message);
+      })
       
-    }
+
+  }catch(e){
+      console.log(e)
+  }
   };
 
   return (
@@ -52,14 +61,6 @@ function Register() {
           required
         />
         <input
-          type="text"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          placeholder="Enter your phone number"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-        <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -69,8 +70,8 @@ function Register() {
         />
         <input
           type="password"
-          value={password2}
-          onChange={(e) => setPassword2(e.target.value)}
+          value={confiermPassword}
+          onChange={(e) => setconfiermPassword(e.target.value)}
           placeholder="Confirm your password"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
