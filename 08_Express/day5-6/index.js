@@ -4,9 +4,11 @@ import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import Categoryroute from "./routes/CategoryRoute.js";
 import productRoute from "./routes/ProductRoute.js";
-import upload from "./middleware/multer.js";
 import UserRoute from "./routes/UserRoute.js";
 import cors from "cors"
+import { uploadProductImage } from "./middleware/multer.js";
+import path from "path";
+
 // dot env used
 dotenv.config();
 
@@ -18,25 +20,12 @@ Connect();
 
 
 // middleware
-
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
 // image upaload by multer
-app.use("/uploads", async (req, res) => {
-    try {
-        const image = await upload.single("image")(req, res);
-        res.status(200).json({
-            success: true,
-            message: "Image uploaded successfully",
-            image: image
-        })
-    } catch (error) {
-        res.status(400).json({
-            success: false,
-            message: error.message,
-        });
-    }
-});
+app.use("/uploads", express.static(path.join(path.resolve(), "/uploads")));
+
+
 // cors used _> 
 const allowedOrigins = ["http://localhost:5173"];
 

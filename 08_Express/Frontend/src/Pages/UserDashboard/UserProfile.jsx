@@ -22,10 +22,10 @@ function UserProfile() {
 
     try {
       let response = await axios.put(
-        "https://python.bhandarishishir.com.np/api/auth/change-password/",
+        "http://localhost:3000/change-password",
         {
-          old_password: oldPassword,
-          new_password: newPassword,
+          password: oldPassword,
+          confiermPassword: newPassword,
         },
         {
           headers: {

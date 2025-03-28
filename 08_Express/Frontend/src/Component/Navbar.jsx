@@ -5,6 +5,10 @@ function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const email = localStorage.getItem("email")
+  console.log(email);
+  
+
   const getEmail = localStorage.getItem("email");
   const navigate = useNavigate();
 
@@ -12,6 +16,8 @@ function Navbar() {
     localStorage.clear();
     navigate("/login"); // Redirect to login after logout
   };
+
+
 
   return (
     <>

@@ -6,7 +6,8 @@ export const userMiddleware = async (req, res, next) => {
   if (!token) return res.status(401).json({ message: 'Unauthorized' });
   try {
     const decoded = jwt.verify(token, process.env.SECURE);
-    req.user = await UserModel.findById(decoded.userId);
+    req.user = await UserModel.findById(decoded.id);
+    console.log(req.user);
     next();
   } catch (err) {
     res.status(403).json({ message: 'Forbidden' });

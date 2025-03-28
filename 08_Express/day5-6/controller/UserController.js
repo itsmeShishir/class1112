@@ -49,16 +49,6 @@ const RegisterController = async (req, res) => {
 
 const UpdatePasswordController = async (req, res) => {
     try{
-        const {token} = req.headers;
-        // split token
-        const splitToken = token.split(" ")[1];
-        const decoded = jsonwebtoken.verify(splitToken, process.env.SECURE);
-        req.user = decoded;
-        // check token from usertoken
-        const userToken = await UserTokenModel.findOne({userId: req.user.id});
-        if(!userToken){
-            return res.status(400).json({message: "Invalid token"});
-        }
         const {password, confiermPassword} = req.body;
         if(password !== confiermPassword){
             return res.status(400).json({message: "Password does not match"})
@@ -71,18 +61,15 @@ const UpdatePasswordController = async (req, res) => {
         console.log(e.message);
     }
 }
-
+const ProfileController = async(req, res) =>{
+    try{
+        res.status(200).json(req.user)
+    }catch(e){
+        res.status(400).json({message: "somethign went wrong "})
+    }
+}
 const UpdateProfileController = async (req, res) => {
     try{
-        const {token} = req.headers;
-        // split token
-        const splitToken = token.split(" ")[1];
-        const decoded = jsonwebtoken.verify(splitToken, process.env.SECURE);
-        req.user = decoded;
-        const userToken = await UserTokenModel.findOne({userId: req.user.id});
-        if(!userToken){
-            return res.status(400).json({message: "Invalid token"});
-        }
         const {email, username } = req.body;
         const user = await UserModel.findByIdAndUpdate(req.user.id, {email, username});
         res.status(200).json({
@@ -191,4 +178,5 @@ export {
     LogoutController,
     GetAllUserController,
     GooogleLoginController,
+    ProfileController,
 };

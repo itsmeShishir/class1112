@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 function ChangeProfile() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState("");
   const [old_data, setOldData]= useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,7 +15,7 @@ function ChangeProfile() {
     const fetchDatas = async () => {
       try {
         let response = await axios.get(
-          "https://python.bhandarishishir.com.np/api/auth/profile/",
+          "http://127.0.0.1:3000/profile",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -26,7 +25,6 @@ function ChangeProfile() {
         setOldData(response.data);
         setEmail(response.data.email);
         setUsername(response.data.username);
-        setPhoneNumber(response.data.phone_number);
       } catch (e) {
         setError("Failed to load category products. Please try again.");
         console.error(e.message);
@@ -44,13 +42,10 @@ function ChangeProfile() {
     // Validate input fields
     try {
       let response = await axios.put(
-        "https://python.bhandarishishir.com.np/api/auth/edit-profile/",
+        "http://localhost:3000/update-profile",
         {
          email : email,
          username : username,
-         phone_number : phoneNumber,
-         profile_image : userprofile
-
         },
         {
         // multi parse form data for image
@@ -114,37 +109,6 @@ function ChangeProfile() {
             required
           />
         </div>
-
-        <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1" htmlFor="new_password">
-            Phone Number
-          </label>
-          <input
-            type="number"
-            id="new_password"
-            placeholder="Enter Phone number"
-            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1" htmlFor="old_password">
-            Profile Img
-          </label>
-          <input
-            type="file"
-            id="old_password"
-            placeholder="Enter new Username"
-            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-            value={userprofile}
-            onChange={(e) => setUserProfile(e.target.value)}
-            required
-          />
-        </div>
-
         <button
           type="submit"
           className={`w-full py-2 mt-3 text-white text-lg rounded-lg transition ${

@@ -20,6 +20,12 @@ function Login() {
         email,
         password,
       });
+     
+      localStorage.setItem("token", response.data.token)
+      localStorage.setItem("email", response.data.email)
+      localStorage.setItem("username", response.data.username)
+      localStorage.setItem("role", response.data.role)
+      localStorage.setItem("id", response.data._id)
       toast.success("Login successful")
       console.log("Local login response:", response.data);
       navigate("/account");
