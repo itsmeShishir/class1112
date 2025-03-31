@@ -1,0 +1,4 @@
+node project 
+-> npm init -y
+-> make a index.js
+->  install express, mongoose, config, 
