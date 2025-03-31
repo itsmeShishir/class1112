@@ -1,10 +1,14 @@
 import blogModel from "../models/blogmodules.js";
+import { uploadProductImage } from "../middleware/upload.js";
 
 // function like creat blog, read all blog, read single blog, update blog, delete blog
 const createBlogController = async (req, res) => {
     try{
-        const {title, description, image, category, user} = req.body;
-        const blog = new blogModel({title, description, image, category, user});
+        // multer image 
+        const {title, description,image, category, user} = req.body;
+
+        const imagge = req.file ? req.file.path : ""; 
+        const blog = new blogModel({title, description, imagge,  category, user});
         await blog.save();
         res.status(200).json({
             success: true,
@@ -87,7 +91,7 @@ const deleteBlogController = async (req, res) => {
         const blog = await blogModel.findByIdAndDelete(id);
         res.status(200).json({
             success: true,
-            message: "Blog created successfully",
+            message: "Blog delete successfully",
             blog: blog,
         })
     }catch(e){
