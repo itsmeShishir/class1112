@@ -6,6 +6,8 @@ import path from 'path';
 import Categoryroute from './routes/CategoryRoute.js';
 import productRoute from './routes/ProductRoute.js';
 import UserRoute from './routes/UserRoute.js';
+import OrderRoute from './routes/OrderRoute.js';
+
 dotenv.config();
 
 const app = express();
@@ -36,7 +38,7 @@ app.use(
 app.use('', UserRoute);
 app.use('', Categoryroute);
 app.use('', productRoute);
-
+app.use('', OrderRoute)
 app.get('/', (req, res) => {
   res.send('<h1>Hello world! My name is Shishir Bhandari</h1>');
 });

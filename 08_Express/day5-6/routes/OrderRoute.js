@@ -5,14 +5,13 @@ import {
   initiatePayment,
   verifyPayment,
   getUserOrderHistory,
-} from '../controllers/orderController.js';
-import { authMiddleware } from '../middlewares/authMiddleware.js';
-
+} from '../controller/OrderController.js';
+import { userMiddleware } from '../middleware/userMiddleware.js';
 const router = express.Router();
 
-router.post('/create', authMiddleware, initiatePayment);
+router.post('/create', userMiddleware, initiatePayment);
 router.get('/verify', verifyPayment);
-router.get('/history', authMiddleware, getUserOrderHistory);
+router.get('/history', userMiddleware, getUserOrderHistory);
 
 export default router;
 

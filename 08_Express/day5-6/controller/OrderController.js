@@ -1,6 +1,6 @@
-import Order from '../models/Order.js';
-import OrderItem from '../models/OrderItem.js';
-import Product from '../models/Product.js'; 
+import Order from "../models/OrderModel.js";
+import OrderItem from '../models/OrderItemModel.js';
+import Product from '../models/ProductModel.js'; 
 import axios from 'axios';
 
 export const initiatePayment = async (req, res) => {
