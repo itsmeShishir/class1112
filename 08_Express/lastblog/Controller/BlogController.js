@@ -1,14 +1,20 @@
 import blogModel from "../models/blogmodules.js";
 import { uploadProductImage } from "../middleware/upload.js";
+import path from "path";
 
 // function like creat blog, read all blog, read single blog, update blog, delete blog
 const createBlogController = async (req, res) => {
     try{
         // multer image 
-        const {title, description,image, category, user} = req.body;
-
+        const {title, description, category, user} = req.body;
         const imagge = req.file ? req.file.path : ""; 
-        const blog = new blogModel({title, description, imagge,  category, user});
+        const blog = new blogModel({
+            title, 
+            description, 
+            image:imagge,  
+            category, 
+            user
+        });
         await blog.save();
         res.status(200).json({
             success: true,
