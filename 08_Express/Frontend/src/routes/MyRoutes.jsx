@@ -21,6 +21,10 @@ import Errorpage from '../Pages/error/Errorpage';
 import AdminDashboardMain from '../Pages/AdminDahboard/Dashboard';
 import CategoryAdmin from '../Pages/AdminDahboard/Category';
 import Cart from '../Pages/Cart';
+import PaymentSuccessPage from '../Pages/PaymentSuccessPage';
+import PaymentErrorPage from '../Pages/PaymentErrorPage';
+import PaymentStatusPage from '../Pages/PaymentStatusPage';
+import OrderHistoryPage from '../Pages/OrderHistoryPage';
 
 function MyRoutes() {
 	return (
@@ -78,6 +82,10 @@ function MyRoutes() {
 							element={<UserDetails />}></Route>
 					</Route>
 					<Route path='cart' element={<Cart />} />
+					<Route path="/payment-success" element={<PaymentSuccessPage />} />
+                	<Route path="/payment-error" element={<PaymentErrorPage />} />
+                	<Route path="/payment-status" element={<PaymentStatusPage />} />
+					<Route path="/order-history" element={<OrderHistoryPage />} />
 				</Route>
 				<Route element={<PrivateRoute allowedRoles={['admin']} />}>
 					<Route

@@ -1,74 +1,86 @@
-
-
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import fetchData from '../services/FetchService';
 import { Link } from 'react-router-dom';
 
+const fetchCategoriesAPI = async () => {
+    const apiUrl = "http://localhost:3000/get-category";
+    try {
+        const response = await fetchData(apiUrl);
+        const categories = response?.data?.categories;
+
+        if (!Array.isArray(categories)) {
+            console.error("API did not return an array of categories:", response);
+            throw new Error('Invalid data format received from server.');
+        }
+        return categories;
+
+    } catch (error) {
+        console.error("Error fetching categories in API function:", error);
+        throw new Error(error.message || 'Failed to fetch categories');
+    }
+};
+
 function AllCategory() {
-	const [categories, setCategories] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
+    const {
+        data: categories = [],
+        isLoading,
+        isError,
+        error
+    } = useQuery({
+        queryKey: ['categories'],
+        queryFn: fetchCategoriesAPI,
+    });
 
-	useEffect(() => {
-		const fetchCategories = async () => {
-			try {
-				let response = await fetchData(
-					"http://localhost:3000/get-category"
-				);			
-				setCategories(response.data.categorys);
-			} catch (err) {
-				setError('Failed to load categories. Please try again later.');
-				console.log(err.message);
-			} finally {
-				setLoading(false);
-			}
-		};
+    return (
+        <div className="w-[90vw] md:w-[85vw] mx-auto mt-6 mb-12">
+            <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
+                Shop By Category
+            </h1>
 
-		fetchCategories();
-	}, []);
+            {isLoading && (
+                <p className="text-center text-lg text-gray-600 mt-4">
+                    Loading categories...
+                </p>
+            )}
 
-	return (
-		<div className="w-[85vw] mx-auto mt-6">
-			<h1 className="text-3xl font-extrabold text-center text-gray-800">
-				All Categories
-			</h1>
+            {isError && (
+                <p className="text-center text-red-600 bg-red-100 p-4 rounded mt-4">
+                    Error: {error?.message || 'An unknown error occurred'}
+                </p>
+            )}
 
-			{/* Loading State */}
-			{loading && (
-				<p className="text-center text-lg font-semibold mt-4">
-					Loading categories...
-				</p>
-			)}
+            {!isLoading && !isError && categories.length === 0 && (
+                 <p className="text-center text-gray-500 mt-4">
+                    No categories found.
+                 </p>
+            )}
 
-			{/* Error State */}
-			{error && <p className="text-center text-red-500 mt-4">{error}</p>}
-
-			{/* Category Grid */}
-			{!loading && !error && (
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-					{categories.map((item, index) => (
-						<Link
-							to={`/singlecategory/${item.id}`}
-							className="group relative block overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300"
-							key={index}>
-							<div className="relative h-40 flex items-center justify-center bg-gray-100">
-								<img
-									src={item.category_image}
-									alt={item.name}
-									className="object-cover h-full w-full rounded-t-lg transition-transform group-hover:scale-110 duration-300"
-								/>
-							</div>
-							<div className="p-4 text-center">
-								<h2 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
-									{item.name}
-								</h2>
-							</div>
-						</Link>
-					))}
-				</div>
-			)}
-		</div>
-	);
+            {!isLoading && !isError && categories.length > 0 && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 mt-6">
+                    {categories.map((item) => (
+                        <Link
+                            to={`/singlecategory/${item._id}`}
+                            className="group block overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300"
+                            key={item._id}
+                        >
+                            <div className="relative h-32 sm:h-40 w-full bg-gray-100 overflow-hidden">
+                                <img
+                                    src={item.category_image || '/placeholder-image.png'}
+                                    alt={item.name || 'Category'}
+                                    className="object-cover h-full w-full transition-transform group-hover:scale-105 duration-300"
+                                    onError={(e) => e.target.src = '/placeholder-image.png'}
+                                />
+                            </div>
+                            <div className="p-3 text-center">
+                                <h2 className="text-base sm:text-lg font-semibold text-gray-700 group-hover:text-blue-600 transition-colors truncate">
+                                    {item.name || 'Unnamed Category'}
+                                </h2>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }
-
 export default AllCategory;

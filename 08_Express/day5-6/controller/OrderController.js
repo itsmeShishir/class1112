@@ -89,36 +89,54 @@ export const initiatePayment = async (req, res) => {
 
 export const verifyPayment = async (req, res) => {
   const pidx = req.query.pidx;
-  if (!pidx) return res.redirect('http://localhost:5173/');
+  console.log("--- verifyPayment Controller Hit ---");
+  console.log("Received pidx:", pidx);
+  console.log("Full query params:", req.query);
+
+  if (!pidx) {
+    console.log("No pidx found, redirecting to homepage.");
+    return res.redirect('http://localhost:5173/');
+  }
 
   try {
+    console.log("Attempting Khalti lookup for pidx:", pidx);
     const { data } = await axios.post(
       'https://a.khalti.com/api/v2/epayment/lookup/',
       { pidx },
       {
         headers: {
-          Authorization: `Key ${process.env.KHALTI_SECRET_KEY}`,
+          'Authorization': `Key ${process.env.KHALTI_SECRET_KEY}`,
           'Content-Type': 'application/json',
         },
       }
     );
+    console.log("Khalti lookup response:", data);
 
     if (data.status === 'Completed') {
+      console.log("Khalti status is Completed. Finding order with pidx:", pidx);
       const order = await Order.findOne({ khalti_pidx: pidx });
+
       if (order) {
+        console.log("Order found:", order._id);
         order.payment_status = 'Completed';
         await order.save();
-
+        console.log("Order status updated to Completed. Redirecting to frontend success page.");
         return res.redirect(`http://localhost:5173/payment-success?order_id=${order._id}`);
+      } else {
+        console.log("Khalti status Completed, but Order not found with pidx:", pidx);
+        return res.redirect('http://localhost:5173/payment-error?reason=order_not_found');
       }
+    } else {
+      console.log(`Khalti status is ${data.status}. Redirecting to frontend failure/pending page.`);
+      return res.redirect(`http://localhost:5173/payment-status?status=${data.status}&pidx=${pidx}`);
     }
 
-    return res.redirect('http://localhost:5173/');
   } catch (err) {
-    console.error(err);
-    return res.redirect('http://localhost:5173/');
+    console.error("Error during Khalti verification:", err.response?.data || err.message || err);
+    return res.redirect('http://localhost:5173/payment-error?reason=verification_failed');
   }
 };
+
 
 export const getUserOrderHistory = async (req, res) => {
   try {
