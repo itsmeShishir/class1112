@@ -7,15 +7,12 @@ function PaymentSuccessPage() {
     const location = useLocation();
     const dispatch = useDispatch();
 
-    // Extract order_id from URL query parameters
     const queryParams = new URLSearchParams(location.search);
     const orderId = queryParams.get('order_id');
 
-    // Clear the cart when the success page loads
-    // Ensure this only happens once
     useEffect(() => {
         dispatch(clearcart());
-    }, [dispatch]); // Dependency array ensures it runs once on mount
+    }, [dispatch]); 
 
 
     return (
@@ -36,13 +33,13 @@ function PaymentSuccessPage() {
 
             <div className="mt-10 space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row">
                 <Link
-                    to="/order-history" // Link to your order history page route
+                    to="/order-history" 
                     className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 text-center"
                 >
                     View Order History
                 </Link>
                 <Link
-                    to="/" // Link to homepage or main products page
+                    to="/" 
                     className="px-8 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-300 text-center"
                 >
                     Continue Shopping

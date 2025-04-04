@@ -45,7 +45,7 @@ export const initiatePayment = async (req, res) => {
 
     if (payment_method === 'Khalti') {
       const payload = {
-        return_url: `http://localhost:3000/api/orders/verify`,
+        return_url: `http://localhost:3000/verify`,
         website_url: `http://localhost:5173`,
         amount: totalAmount * 100,
         purchase_order_id: `Order_${order._id}`,
